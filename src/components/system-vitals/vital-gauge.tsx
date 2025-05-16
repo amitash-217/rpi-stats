@@ -25,10 +25,11 @@ interface VitalGaugeProps {
   value: number;
   maxValue: number;
   unit: string;
-  color: string; 
+  color: string;
   isLoading: boolean;
   subText?: string;
-  descriptionText?: string; 
+  isLoad: boolean;
+  descriptionText?: string;
 }
 
 export function VitalGauge({
@@ -40,9 +41,10 @@ export function VitalGauge({
   color,
   isLoading,
   subText,
+  isLoad,
   descriptionText,
 }: VitalGaugeProps) {
-  
+
   const boundedValue = Math.max(0, Math.min(value, maxValue));
   const percentageValue = maxValue > 0 ? (boundedValue / maxValue) * 100 : 0;
 
@@ -51,7 +53,7 @@ export function VitalGauge({
   const chartConfig = {
     arc: { // Changed key to 'arc' to avoid conflict if 'value' is a common data key name
       label: title,
-      color: color, 
+      color: color,
     },
   } satisfies ChartConfig;
 
@@ -85,19 +87,19 @@ export function VitalGauge({
         >
           <RadialBarChart
             data={chartData}
-            startAngle={210} 
-            endAngle={-30} 
+            startAngle={210}
+            endAngle={-30}
             innerRadius="70%"
             outerRadius="90%"
             barSize={18}
             cx="50%"
-            cy="55%" 
+            cy="55%"
             margin={{ top: 0, right: 0, bottom: 0, left: 0 }}
           >
             <PolarAngleAxis type="number" domain={[0, 100]} tick={false} axisLine={false} />
             <RadialBar
               dataKey="value"
-              background={{ fill: "hsl(var(--muted))" }} 
+              background={{ fill: "hsl(var(--muted))" }}
               cornerRadius={9}
               className="[&>path[name=background]]:stroke-transparent"
               animationDuration={500}
@@ -107,15 +109,15 @@ export function VitalGauge({
               y="50%"
               textAnchor="middle"
               dominantBaseline="middle"
-              className="fill-foreground text-3xl sm:text-4xl font-bold"
+              className="fill-foreground text-2xl sm:text-3xl font-bold"
             >
-              {`${Math.round(boundedValue)}`}
+              {(isLoad) ? boundedValue.toFixed(2) : boundedValue.toFixed(1)}
               <tspan dy="-0.3em" dx="0.1em" className="text-sm sm:text-base font-medium align-baseline">{unit}</tspan>
             </text>
             {subText && (
               <text
                 x="50%"
-                y="72%" 
+                y="72%"
                 textAnchor="middle"
                 dominantBaseline="middle"
                 className="fill-muted-foreground text-xs sm:text-sm"
