@@ -20,9 +20,8 @@ export default function SystemVitalsPage() {
   const maxCpu = 2.147
 
   useEffect(() => {
-    // ${window.location.hostname}
     const fetchData = () => {
-      fetch(`http://192.168.0.110:4002/stats`).then(
+      fetch(`http://${window.location.hostname}:4002/stats`).then(
       (response) => {
         return response.json()
       }
