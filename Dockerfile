@@ -1,6 +1,6 @@
 FROM node:20
 
-ENV PROJECT_DIR=/opt/code-capsule
+ENV PROJECT_DIR=/opt/rpi-stats
 
 WORKDIR $PROJECT_DIR/
 
