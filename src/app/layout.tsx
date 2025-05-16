@@ -5,8 +5,8 @@ import './globals.css';
 import { Toaster } from "@/components/ui/toaster"; 
 
 export const metadata: Metadata = {
-  title: 'System Vitals Dashboard',
-  description: 'Real-time monitoring of system temperature, voltage, CPU, and RAM usage.',
+  title: 'Raspberry Pi Stats Dashboard',
+  description: 'Real-time monitoring of Raspberry Pi temperature, voltage, CPU, and RAM usage.',
 };
 
 export default function RootLayout({
