@@ -14,7 +14,7 @@ export default function SystemVitalsPage() {
 
   useEffect(() => {
     const fetchData = () => {
-      fetch(`http://${window.location.hostname}:4002/stats`).then(
+      fetch(`http://192.168.0.110:4002/stats`).then(
       (response) => {
         return response.json()
       }
